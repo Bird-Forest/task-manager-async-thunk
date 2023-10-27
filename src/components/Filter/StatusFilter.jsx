@@ -8,21 +8,21 @@ import {
   TitleFilter,
 } from './StatusFilter.styled';
 import { useDispatch, useSelector } from 'react-redux';
-// Імпортуємо генератор екшену
-import { setStatusFilter } from '../../redux/filtersSlice';
+
 import {
   BsEmojiWinkFill,
   BsFillEmojiAngryFill,
   BsFillEmojiSmileFill,
 } from 'react-icons/bs';
 
+import { selectStatusFilter } from 'redux/selectors';
+import { setStatusFilter } from 'redux/filtersSlice';
+import { statusFilters } from 'redux/constans';
+
 export default function StatusFilter() {
-  // Отримуємо посилання на функцію відправки екшенів
   const dispatch = useDispatch();
-  // Отримуємо значення фільтра із стану Redux
-  const filter = useSelector(state => state.filters);
-  console.log(filter);
-  // Викликаємо генератор екшену onClick та передаємо значення фільтра
+  const filter = useSelector(selectStatusFilter);
+  const handleFilterChange = filter => dispatch(setStatusFilter(filter));
 
   return (
     <>
@@ -30,20 +30,20 @@ export default function StatusFilter() {
         <TitleFilter>Filter</TitleFilter>
         <WrapBtn>
           <BtnAll
-            selected={filter.all}
-            onClick={() => dispatch(setStatusFilter(filter.all))}
+            selected={filter === statusFilters.all}
+            onClick={() => handleFilterChange(statusFilters.all)}
           >
             <BsEmojiWinkFill className="icon-btn-all " />
           </BtnAll>
           <BtnActive
-            selected={filter.active}
-            onClick={() => dispatch(setStatusFilter(filter.active))}
+            selected={filter === statusFilters.active}
+            onClick={() => handleFilterChange(statusFilters.active)}
           >
             <BsFillEmojiAngryFill className="icon-btn-active" />
           </BtnActive>
           <BtnCompleted
-            selected={filter.ended}
-            onClick={() => dispatch(setStatusFilter(filter.ended))}
+            selected={filter === statusFilters.completed}
+            onClick={() => handleFilterChange(statusFilters.completed)}
           >
             <BsFillEmojiSmileFill className="icon-btn-ended" />
           </BtnCompleted>

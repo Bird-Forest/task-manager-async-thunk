@@ -71,16 +71,22 @@ export const TextTask = styled.label`
   color: white;
   min-width: 270px;
   height: 30px;
-  font-size: 16px;
-  font-weight: 500;
   border-radius: 10px;
   border: 3px solid rgb(77, 106, 255);
   -webkit-box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.75);
   padding: 4px 8px;
   margin: 0;
-  &:-webkit-autofill {
-    border: 3px solid darkorange;
+  .text {
+    display: inline-block;
+    width: 270px;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 0;
   }
 
   ${props => {
@@ -108,8 +114,11 @@ export const TextTask = styled.label`
 
   @media screen and (min-width: 600px) {
     min-width: 450px;
-    font-size: 20px;
     padding: 8px 16px;
+    .text {
+      width: 450px;
+      font-size: 20px;
+    }
   }
 `;
 export const BtnDelete = styled.button`

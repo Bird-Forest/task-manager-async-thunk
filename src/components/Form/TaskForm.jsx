@@ -1,9 +1,13 @@
 import React from 'react';
 import { BsFillHandIndexThumbFill } from 'react-icons/bs';
 import { BtnForm, FormTask, InputForm } from './TaskForm.styled';
+
+// import { addTask } from '../../redux/tasksSlice';
+
 // Імпортуємо генератор екшену
-import { addTask } from '../../redux/tasksSlice';
+
 import { useDispatch } from 'react-redux';
+import { addTask } from 'redux/operations';
 
 export default function TaskForm() {
   // Отримуємо посилання на функцію відправки екшенів
